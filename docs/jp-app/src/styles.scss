@@ -1,0 +1,202 @@
+/* ==========================================================================
+   GIR6091 · TASKS — Design tokens
+   Minimalista, negro + azul oscuro. Acciones codificadas por color:
+   crear = azul · editar = verde oscuro · borrar = rojo oscuro
+   ========================================================================== */
+
+:root {
+  /* Superficies */
+  --bg: #05070b;
+  --bg-elevated: #0b0e15;
+  --surface: #10141c;
+  --surface-hover: #161b26;
+  --border: #212836;
+  --border-soft: #1a2029;
+
+  /* Texto */
+  --text: #ffffff;
+  --text-muted: #ffffff;
+  --text-faint: #ffffff;
+
+  /* Acento primario — crear / navegación / foco */
+  --blue: #16305c;
+  --blue-strong: #1f4079;
+  --blue-dim: #16294a;
+
+  /* Editar */
+  --green: #2f6b4f;
+  --green-strong: #3d8a66;
+  --green-dim: #123322;
+
+  /* Borrar */
+  --red: #8c2f35;
+  --red-strong: #b23b42;
+  --red-dim: #38151a;
+
+  --radius: 6px;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', 'Roboto', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* Textura de fondo: retícula de nodos, referencia sutil a "redes
+   inteligentes" — el único elemento decorativo del sistema, aplicado
+   una sola vez y con muy baja opacidad. */
+body {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(63, 116, 194, 0.16) 1px, transparent 0);
+  background-size: 28px 28px;
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.page-container {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ---- Snackbars ---------------------------------------------------- */
+.error-snackbar {
+  background-color: var(--red-dim) !important;
+  color: #f3d2d4 !important;
+  border: 1px solid var(--red);
+}
+
+.success-snackbar {
+  background-color: var(--green-dim) !important;
+  color: #cdeedd !important;
+  border: 1px solid var(--green);
+}
+
+/* ---- Reskin de Angular Material (superficies) ---------------------- */
+.mat-toolbar,
+.mat-mdc-card,
+.mat-mdc-dialog-container .mdc-dialog__surface,
+.mat-mdc-table,
+.mat-mdc-menu-panel {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border-soft);
+}
+
+.mat-toolbar {
+  background-color: var(--bg-elevated) !important;
+  border: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.mat-mdc-header-row {
+  background-color: var(--bg-elevated) !important;
+}
+
+.mat-mdc-header-cell {
+  color: var(--text-muted) !important;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom-color: var(--border) !important;
+}
+
+.mat-mdc-cell,
+.mat-mdc-row {
+  color: var(--text) !important;
+  border-bottom-color: var(--border-soft) !important;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: var(--surface-hover) !important;
+}
+
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: var(--border);
+  --mdc-outlined-text-field-hover-outline-color: var(--text-faint);
+  --mdc-outlined-text-field-focus-outline-color: var(--blue-strong);
+  --mdc-outlined-text-field-label-text-color: var(--text-muted);
+  --mdc-outlined-text-field-input-text-color: var(--text);
+  --mdc-outlined-text-field-focus-label-text-color: var(--blue-strong);
+  caret-color: var(--blue-strong);
+}
+
+.mat-mdc-menu-item {
+  color: var(--text) !important;
+}
+
+.mat-mdc-menu-item:hover:not([disabled]) {
+  background-color: var(--surface-hover) !important;
+}
+
+/* ---- Botones de acción codificados por color ------------------------
+   Se aplican junto con mat-flat-button / mat-icon-button en las plantillas.
+   btn-create → azul · btn-edit → verde oscuro · btn-delete → rojo oscuro */
+.btn-create {
+  --mdc-filled-button-container-color: var(--blue);
+  --mdc-filled-button-label-text-color: #eaf1fb;
+}
+.btn-create:hover {
+  --mdc-filled-button-container-color: var(--blue-strong);
+}
+
+.btn-edit {
+  color: var(--green-strong) !important;
+}
+.btn-edit:hover {
+  background-color: var(--green-dim) !important;
+}
+
+.btn-delete {
+  color: var(--red-strong) !important;
+}
+.btn-delete:hover {
+  background-color: var(--red-dim) !important;
+}
+
+/* Chips de estado */
+.status-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  border-radius: 4px !important;
+  border: 1px solid transparent;
+}
+.status-chip.is-pending {
+  background-color: var(--bg-elevated) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border);
+}
+.status-chip.is-progress {
+  background-color: var(--blue-dim) !important;
+  color: #a9c6ec !important;
+  border-color: var(--blue);
+}
+.status-chip.is-completed {
+  background-color: var(--green-dim) !important;
+  color: #a9e0c1 !important;
+  border-color: var(--green);
+}
